@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modulhandbuch Musiktherapie · Version 4.0 · 58 Module</title>
+<title>Modulhandbuch Musiktherapie · Version 4.1 · 58 Module</title>
 <style>
 /* =========================================================================
-   MODULHANDBUCH MUSIKTHERAPIE – interaktive Einzeldatei (Version 4.0 / Karte v10.7 / 58 Module)
+   MODULHANDBUCH MUSIKTHERAPIE – interaktive Einzeldatei (Version 4.1 / Karte v10.7 / 58 Module)
    Zusammenführung von Modullandkarte (HTML) + Modulhandbuch (DOCX).
 
    GESTALTUNGSENTSCHEIDUNGEN (dokumentiert für Nachfolge):
@@ -309,6 +309,31 @@ body{
 .pl-total span{color:#185FA5}
 .pl-addrow{padding:4px 14px 14px}
 .pl-hint{font-size:11px;color:var(--color-text-secondary);background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:8px 11px;margin-bottom:14px;line-height:1.5}
+.pl-picker-controls{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:10px 16px 0}
+.pl-picker-controls .pl-h{margin:0 2px 0 0}
+.pl-toggle{display:inline-flex;border:0.5px solid var(--color-border-secondary);border-radius:999px;overflow:hidden;background:var(--color-surface)}
+.pl-toggle button{appearance:none;border:0;background:transparent;cursor:pointer;font-family:var(--font-sans);font-size:11.5px;color:var(--color-text-secondary);padding:5px 10px}
+.pl-toggle button.on{background:var(--color-background-secondary);color:var(--color-text-primary);font-weight:700}
+.pl-filter-pill{font-size:11px;border:0.5px solid var(--color-border-secondary);background:var(--color-surface);border-radius:999px;padding:5px 9px;color:var(--color-text-secondary)}
+.pl-filter-pill strong{color:var(--color-text-primary)}
+.pl-filter-pill button{appearance:none;border:0;background:transparent;cursor:pointer;color:#A32D2D;font-size:11px;margin-left:5px;padding:0}
+.pl-wbadges{display:flex;flex-wrap:wrap;gap:3px;flex-shrink:0;max-width:140px;justify-content:flex-end}
+.pl-wbadge{font-size:9px;font-weight:700;line-height:1;padding:2px 5px;border-radius:10px;border:0.5px solid currentColor;white-space:nowrap}
+
+
+.pl-frame{border:0.5px solid var(--color-border-tertiary);border-radius:9px;background:rgba(241,237,229,.45);padding:10px 11px;margin:0 0 12px}
+.pl-frame-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.pl-frame-title{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-secondary);margin-right:auto}
+.pl-frame-guide{font-size:11.5px;line-height:1.45;color:var(--color-text-secondary);background:var(--color-surface);border:0.5px solid var(--color-border-tertiary);border-radius:7px;padding:7px 9px;margin:6px 0 9px}
+.pl-frame-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px}
+.pl-frame-grid .pl-field.full{grid-column:1 / -1}
+@media(max-width:720px){.pl-frame-grid{grid-template-columns:1fr}}
+
+.pl-docout{border:0.5px solid var(--color-border-tertiary);border-radius:9px;background:var(--color-surface);padding:10px 11px;margin:12px 0 0}
+.pl-docout-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.pl-docout-title{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-secondary);margin-right:auto}
+.pl-docout textarea{min-height:145px;background:#fbfaf7}
+.pl-phase-refresh{margin-top:6px}
 
 /* Baustein-Auswahl (Modulpicker) */
 .pl-picker{position:fixed;top:0;right:0;height:100%;width:min(560px,94vw);background:var(--color-surface);box-shadow:-12px 0 40px rgba(40,30,15,.18);transform:translateX(100%);transition:transform .26s cubic-bezier(.4,0,.2,1);z-index:43;display:flex;flex-direction:column}
@@ -400,7 +425,7 @@ body{
 <header class="app-header">
   <h1 class="app-title">Modulhandbuch Musiktherapie</h1>
   <p class="app-sub"><b>58 Module</b> · 7 Methoden · 6 Wirkdimensionen · 4 Settings (TK Psychosomatik · TK Sucht · Gerontopsychiatrie · Akute Entgiftung)</p>
-  <p class="app-sub" style="margin-top:2px">Tom Jansen, Musiktherapeut <span style="font-weight:400;color:var(--color-text-secondary)">(Version 4.0 · Juni 2026)</span></p>
+  <p class="app-sub" style="margin-top:2px">Tom Jansen, Musiktherapeut <span style="font-weight:400;color:var(--color-text-secondary)">(Version 4.1 · Juni 2026)</span></p>
 </header>
 
 <nav class="tabs" role="tablist" aria-label="Ansicht wechseln">
@@ -513,7 +538,7 @@ body{
         <button class="pl-btn tiny" onclick="document.getElementById('plImportFile').click()">Import</button>
         <input type="file" id="plImportFile" accept="application/json,.json" style="display:none" onchange="plImport(this)">
       </div>
-      <p class="pl-hint" style="margin-top:8px">Die Pläne werden lokal in diesem Browser auf diesem PC gespeichert (localStorage). Zur Sicherung oder Weitergabe den JSON-Export nutzen – beim Import wird der aktuelle Stand ersetzt.</p>
+      <p class="pl-hint" style="margin-top:8px">Die Pläne werden lokal in diesem Browser auf diesem PC gespeichert (localStorage). Der Stundenrahmen, therapeutische Entscheidung und Dokumentationskern werden mitgespeichert. Zur Sicherung oder Weitergabe den JSON-Export nutzen – beim Import wird der aktuelle Stand ersetzt.</p>
     </aside>
     <div class="pl-main" id="plMain"></div>
   </div>
@@ -529,6 +554,13 @@ body{
   <div class="search-wrap" style="margin:12px 16px 0;max-width:none">
     <span class="search-ico">⌕</span>
     <input id="plPickerSearch" type="search" placeholder="Modul suchen (Code oder Name) …" autocomplete="off" oninput="plRenderPicker()">
+  </div>
+  <div class="pl-picker-controls">
+    <span class="pl-h">Darstellung</span>
+    <span class="pl-toggle" role="group" aria-label="Bausteine gruppieren">
+      <button type="button" id="plViewWirk" class="on" onclick="plSetPickerView('wirk')">nach Wirkdimension</button>
+      <button type="button" id="plViewMethod" onclick="plSetPickerView('method')">nach Methode</button>
+    </span>
   </div>
   <div class="pl-picker-body" id="plPickerBody"></div>
 </div>
@@ -844,7 +876,7 @@ function showView(v,btn){
    Datenmodell (für Nachfolge dokumentiert):
    plState = { v:1, activePlanId, plans:[ Plan ] }
      Plan    = { id, name, kind:'plan'|'single', setting:'p'|'s'|'g'|'a', sessions:[ Session ] }
-     Session = { id, label, date, group, wirkdim, notes, blocks:[ Block ] }
+     Session = { id, label, date, group, wirkdim, orientMode, orientGreeting, orientThemes, orientDecision, orientDoc, notes, blocks:[ Block ] }
      Block   = { id, moduleId, role, duration:Zahl(Min.), phases:Text, note }
    Einzelstunden werden bewusst im selben Datenmodell gespeichert: kind='single' mit genau einer Session.
    Persistenz: localStorage-Schlüssel 'mhb_plaene_v1'.
@@ -857,6 +889,7 @@ const PL_WLABEL={W1:'Stabilisierung',W2:'Aktivierung',W3:'Ausdruck',W4:'Verbindu
 
 let plState={v:1,activePlanId:null,plans:[]};
 let plPickerTarget=null;
+let plPickerView='wirk';
 
 function plUid(){return 'p'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
 function plEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -868,12 +901,61 @@ function plLoad(){
   }catch(e){ /* localStorage nicht verfügbar oder defekt: leer starten */ }
   if(!plState.plans) plState.plans=[];
   // Migration aus Version 3.0: vorhandene Einträge ohne kind sind reguläre Behandlungsverläufe.
-  plState.plans.forEach(p=>{ if(!p.kind) p.kind='plan'; if(!Array.isArray(p.sessions)) p.sessions=[]; });
+  plState.plans.forEach(p=>{ 
+    if(!p.kind) p.kind='plan'; 
+    if(!Array.isArray(p.sessions)) p.sessions=[];
+    p.sessions.forEach(plEnsureSessionFrame);
+  });
 }
 function plSave(){
   try{ localStorage.setItem(PL_KEY,JSON.stringify(plState)); }
   catch(e){ alert('Speichern im Browser nicht möglich (localStorage gesperrt oder voll). Bitte über Export sichern.'); }
 }
+
+function plEnsureSessionFrame(s){
+  if(!s) return s;
+  if(s.orientMode==null) s.orientMode='auto';
+  if(s.orientGreeting==null) s.orientGreeting='';
+  if(s.orientThemes==null) s.orientThemes='';
+  if(s.orientDecision==null) s.orientDecision='';
+  if(s.orientDoc==null) s.orientDoc='';
+  return s;
+}
+function plFrameModeEffective(session,setting){
+  const mode=(session&&session.orientMode)||'auto';
+  if(mode==='auto') return setting==='g'?'geronto':'regular';
+  return mode;
+}
+function plFrameGuide(session,setting){
+  const mode=plFrameModeEffective(session,setting);
+  if(mode==='geronto') return 'Geronto-Einstieg: kein langer verbaler Vorlauf. Du beginnst musikalisch, ritualisiert und gut erkennbar. Beobachtung, Kontaktaufnahme und Anpassung laufen über Tempo, Blick, Atmung, Mitbewegung und Resonanz.';
+  if(mode==='crisis') return 'Krisen-/Akutlogik: kurze Orientierung, keine ausführliche Themenrunde. Erst Sicherheit, Kontakt und Regulation; danach nur kleine, überschaubare Schritte.';
+  return 'Regulärer Einstieg: kurze Begrüßung, aktueller Zustand und Themenlage klären, daraus die therapeutische Richtung der Stunde ableiten. Die Bausteine folgen dieser Entscheidung, nicht umgekehrt.';
+}
+function plFrameModeOptions(current){
+  const opts=[['auto','automatisch nach Setting'],['regular','reguläre Eingangsrunde'],['geronto','Geronto: direkter musikalischer Beginn'],['crisis','Krise/Akut: kurze Stabilisierung']];
+  return opts.map(o=>`<option value="${o[0]}" ${current===o[0]?'selected':''}>${plEsc(o[1])}</option>`).join('');
+}
+function plRenderFrame(plan,s){
+  plEnsureSessionFrame(s);
+  const guide=plFrameGuide(s,plan.setting);
+  const eff=plFrameModeEffective(s,plan.setting);
+  const geronto=eff==='geronto';
+  return `<div class="pl-frame">
+    <div class="pl-frame-top">
+      <div class="pl-frame-title">Stundenrahmen / klinische Orientierung</div>
+      <div class="pl-field" style="min-width:230px"><label>Einstiegslogik</label><select class="pl-select" onchange="plUpdateSession('${s.id}','orientMode',this.value);plRenderMain()">${plFrameModeOptions(s.orientMode||'auto')}</select></div>
+    </div>
+    <div class="pl-frame-guide">${plEsc(guide)}</div>
+    <div class="pl-frame-grid">
+      <div class="pl-field"><label>${geronto?'Musikalischer Beginn / Ritual':'Begrüßung / Ankommen'}</label><textarea class="pl-area" rows="2" placeholder="${geronto?'z. B. vertrauter Anfangston, Begrüßungslied, Klangritual, Tempo ruhig setzen':'z. B. kurze Begrüßung, Kontakt herstellen, Gruppe sammeln'}" onchange="plUpdateSession('${s.id}','orientGreeting',this.value)">${plEsc(s.orientGreeting)}</textarea></div>
+      <div class="pl-field"><label>${geronto?'Beobachtung zu Beginn':'Aktuelle Themen / Lage'}</label><textarea class="pl-area" rows="2" placeholder="${geronto?'z. B. Wachheit, Blickkontakt, Unruhe, Mitgehen, Rückzug, Stimmung im Raum':'z. B. Was ist gerade da? Stimmung, Druck, Konflikte, Erschöpfung, Thema der Gruppe'}" onchange="plUpdateSession('${s.id}','orientThemes',this.value)">${plEsc(s.orientThemes)}</textarea></div>
+      <div class="pl-field full"><label>Therapeutische Entscheidung für den weiteren Verlauf</label><textarea class="pl-area" rows="2" placeholder="z. B. heute erst stabilisieren, dann vorsichtig aktivieren; Ausdruck vermeiden; biografisch anschließen; Abschluss stärker sichern" onchange="plUpdateSession('${s.id}','orientDecision',this.value)">${plEsc(s.orientDecision)}</textarea></div>
+      <div class="pl-field full"><label>Dokumentationskern nach der Stunde</label><textarea class="pl-area" rows="2" placeholder="z. B. Aus der Eingangsrunde ergab sich..., deshalb wurde..., beobachtbar war..., für die nächste Stunde..." onchange="plUpdateSession('${s.id}','orientDoc',this.value)">${plEsc(s.orientDoc)}</textarea></div>
+    </div>
+  </div>`;
+}
+
 function plActivePlan(){ return plState.plans.find(p=>p.id===plState.activePlanId)||null; }
 
 /* ---- Phasen + Referenzdauer aus dem Modulprofil extrahieren ---- */
@@ -894,8 +976,13 @@ function plExtractPhases(moduleId){
       if(tds.length<2) return;
       const name=tds[0].textContent.replace(/\*+/g,'').replace(/\s+/g,' ').trim();
       const time=tds[1].textContent.replace(/\s+/g,' ').trim();
+      const instruction=tds[2]?tds[2].textContent.replace(/\s+/g,' ').trim():'';
+      const aim=tds[3]?tds[3].textContent.replace(/\s+/g,' ').trim():'';
       if(!name) return;
-      lines.push(time?`${name} — ${time}`:name);
+      let block=`${name}${time?' ('+time+')':''}`;
+      if(instruction) block+=`\nAnleitung: ${instruction}`;
+      if(aim) block+=`\nZiel: ${aim}`;
+      lines.push(block);
       const nums=(time.match(/\d+/g)||[]).map(Number);
       if(nums.length===1) sumMid+=nums[0];
       else if(nums.length>=2) sumMid+=Math.round((nums[0]+nums[1])/2);
@@ -907,7 +994,7 @@ function plExtractPhases(moduleId){
   if(ref){ duration=Math.round((Number(ref[1])+Number(ref[2]))/2); }
   else if(sumMid>0){ duration=sumMid; }
   else { duration=25; }
-  return {text:lines.join('\n'),duration};
+  return {text:lines.join('\n\n'),duration};
 }
 
 /* ---- Primäre Wirkdimension eines Moduls (erste Nennung in D, W1..W6) ---- */
@@ -933,6 +1020,30 @@ function plModuleMatchesWirkdim(moduleId,wcode){
   const dim=D.find(x=>x.code===wcode);
   return !!(dim && Array.isArray(dim.mods) && dim.mods.includes(moduleId));
 }
+function plModuleWirkCodes(moduleId){
+  return D.filter(dim=>Array.isArray(dim.mods)&&dim.mods.includes(moduleId)).map(dim=>dim.code);
+}
+function plWirkBadgeHtml(moduleId){
+  const codes=plModuleWirkCodes(moduleId);
+  return `<span class="pl-wbadges">${codes.map(code=>{
+    const dim=D.find(x=>x.code===code);
+    const color=dim?dim.fg:'#6b6760';
+    return `<span class="pl-wbadge" style="color:${color};background:rgba(255,255,255,.55)">${code}</span>`;
+  }).join('')}</span>`;
+}
+function plSetPickerView(view){
+  plPickerView = view==='method' ? 'method' : 'wirk';
+  const bw=document.getElementById('plViewWirk');
+  const bm=document.getElementById('plViewMethod');
+  if(bw) bw.classList.toggle('on',plPickerView==='wirk');
+  if(bm) bm.classList.toggle('on',plPickerView==='method');
+  plRenderPicker();
+}
+function plClearPickerWirkdim(){
+  const session=plPickerTarget?plFindSession(plPickerTarget):null;
+  if(session){ session.wirkdim=''; plSave(); plRenderMain(); }
+  plRenderPicker();
+}
 
 /* ---- Setting-Warnung (gleiche Datenbasis wie die Landkarte) ---- */
 function plSettingWarn(moduleId,setting){
@@ -948,6 +1059,132 @@ function plSettingWarn(moduleId,setting){
 
 function plSessionTotal(session){
   return (session.blocks||[]).reduce((s,b)=>s+(Number(b.duration)||0),0);
+}
+
+function plCleanLine(s){return String(s||'').replace(/\s+/g,' ').trim();}
+
+/* ---- Fachsprachliche Dokumentation statt interner Codes ----
+   Die Planungsansicht darf mit Kürzeln arbeiten (KM-1, W2, RN usw.).
+   Für die Übernahme ins klinische Dokumentationssystem werden diese Kürzel
+   hier bewusst in verständliche Fachformulierungen übersetzt.
+*/
+const PL_WDOC={
+  W1:'Stabilisierung, Orientierung und Regulation',
+  W2:'Aktivierung, Antriebsaufbau und Aufmerksamkeitslenkung',
+  W3:'Ausdruck, Entlastung und Affektregulation',
+  W4:'Kontakt, Resonanz und Gruppeneinbindung',
+  W5:'biografische Arbeit, Sinnbezug und Identitätsstärkung',
+  W6:'Integration, Abschluss und alltagsbezogener Transfer'
+};
+const PL_METHODDOC={
+  km:'körper- und stimmbezogene musiktherapeutische Arbeit',
+  rz:'rezeptive Klang- und Hörerfahrung',
+  im:'improvisatorische Klangarbeit',
+  rn:'rhythmisch-körperbezogene Aktivierung und Orientierung',
+  tr:'trommelbezogene Rhythmus- und Kontaktarbeit',
+  hs:'ressourcen- und lösungsorientierte hypnosystemische Rahmung',
+  lk:'kognitiv-motorische Aktivierung im musikalisch-rhythmischen Rahmen'
+};
+function plDocWirkLabelFromCode(code){ return PL_WDOC[code] || (PL_WLABEL[code]||'').toLowerCase(); }
+function plDocWirkLabelFromValue(value){
+  const m=String(value||'').match(/^(W[1-6])\b/);
+  return m ? plDocWirkLabelFromCode(m[1]) : plCleanLine(value);
+}
+function plDocModuleTitle(moduleId){
+  const meta=M[moduleId]||{};
+  return plCleanLine(meta.n||moduleId).replace(/&/g,'und').replace(/\s*★\s*/g,'').replace(/\s*⊕\s*/g,'');
+}
+function plDocMethod(moduleId){
+  const meta=M[moduleId]||{};
+  return PL_METHODDOC[meta.m] || (METHODNAME[meta.m]||'musiktherapeutische Arbeit');
+}
+function plDocModuleWirk(moduleId){
+  const codes=plModuleWirkCodes(moduleId);
+  if(!codes.length) return '';
+  return codes.map(plDocWirkLabelFromCode).filter(Boolean).join(' sowie ');
+}
+function plDocBlockPhrase(b){
+  const title=plDocModuleTitle(b.moduleId);
+  const method=plDocMethod(b.moduleId);
+  const wirk=plDocModuleWirk(b.moduleId);
+  const role=b.role ? `${plCleanLine(b.role).toLowerCase()} ` : '';
+  const dur=Number(b.duration)||0;
+  const durTxt=dur ? `über ${dur} Minuten` : 'in angepasster Dauer';
+  let phrase=`${role}${method} mit dem Schwerpunkt „${title}“ ${durTxt}`;
+  if(wirk) phrase+=`, fachlich ausgerichtet auf ${wirk}`;
+  return phrase;
+}
+function plDocVerlaufPhrase(session){
+  const seq=(session.blocks||[]).map(b=>plPhaseOf(b.moduleId)).filter(Boolean);
+  if(!seq.length) return '';
+  const unique=[];
+  seq.forEach(code=>{ if(!unique.includes(code)) unique.push(code); });
+  const labels=unique.map(plDocWirkLabelFromCode).filter(Boolean);
+  if(labels.length===1) return `Die Stunde blieb im Schwerpunkt bei ${labels[0]}.`;
+  if(labels.length===2) return `Die Stunde führte von ${labels[0]} hin zu ${labels[1]}.`;
+  return `Die Stunde entwickelte sich fachlich von ${labels.slice(0,-1).join(' über ')} hin zu ${labels[labels.length-1]}.`;
+}
+function plSessionDocText(plan,s,idx){
+  plEnsureSessionFrame(s);
+  const lines=[];
+  const title=s.label?`„${plCleanLine(s.label)}“`:(plan.kind==='single'?'Die Einzelstunde':`Die Einheit ${idx+1}`);
+  const setting=PL_SETTING_LABEL[plan.setting]||'';
+  const meta=[];
+  if(s.date) meta.push(`am ${plCleanLine(s.date)}`);
+  if(s.group) meta.push(`mit ${plCleanLine(s.group)}`);
+  if(setting) meta.push(`im Setting ${setting}`);
+  if(s.wirkdim) meta.push(`mit dem fachlichen Schwerpunkt ${plDocWirkLabelFromValue(s.wirkdim)}`);
+  lines.push(`${title}${meta.length?' '+meta.join(', '):''}.`);
+
+  const mode=plFrameModeEffective(s,plan.setting);
+  if(mode==='geronto'){
+    if(s.orientGreeting) lines.push(`Der Einstieg erfolgte direkt musikalisch und ritualisiert: ${plCleanLine(s.orientGreeting)}.`);
+    else lines.push('Der Einstieg erfolgte direkt musikalisch und ritualisiert, ohne längere verbale Eingangsrunde.');
+    if(s.orientThemes) lines.push(`Zu Beginn wurden folgende Aspekte beobachtet: ${plCleanLine(s.orientThemes)}.`);
+  }else if(mode==='crisis'){
+    if(s.orientGreeting) lines.push(`Zu Beginn stand eine kurze Stabilisierung und Orientierung im Vordergrund: ${plCleanLine(s.orientGreeting)}.`);
+    else lines.push('Zu Beginn stand eine kurze Stabilisierung und Orientierung im Vordergrund.');
+    if(s.orientThemes) lines.push(`Die aktuelle Lage zeigte sich wie folgt: ${plCleanLine(s.orientThemes)}.`);
+  }else{
+    if(s.orientGreeting) lines.push(`Die Stunde begann mit ${plCleanLine(s.orientGreeting)}.`);
+    else lines.push('Die Stunde begann mit einer kurzen Begrüßung, Orientierung und Klärung der aktuellen Themenlage.');
+    if(s.orientThemes) lines.push(`Aus der Eingangsrunde ergaben sich folgende Themen: ${plCleanLine(s.orientThemes)}.`);
+  }
+  if(s.orientDecision) lines.push(`Daraus ergab sich folgende therapeutische Ausrichtung: ${plCleanLine(s.orientDecision)}.`);
+
+  const blocks=s.blocks||[];
+  if(blocks.length){
+    const parts=blocks.map(plDocBlockPhrase);
+    lines.push(`Im weiteren Verlauf wurde gearbeitet mit: ${parts.join('; ')}.`);
+    const notes=blocks.filter(b=>plCleanLine(b.note)).map(b=>`${plDocModuleTitle(b.moduleId)}: ${plCleanLine(b.note)}`);
+    if(notes.length) lines.push(`Beobachtungen und Anpassungen: ${notes.join(' | ')}.`);
+  }
+  if(s.notes) lines.push(`Weitere Hinweise: ${plCleanLine(s.notes)}.`);
+  if(s.orientDoc) lines.push(`Dokumentationskern: ${plCleanLine(s.orientDoc)}.`);
+  const vphrase=plDocVerlaufPhrase(s);
+  if(vphrase) lines.push(vphrase);
+  lines.push(`Gesamtdauer: ${plSessionTotal(s)} Minuten.`);
+  return lines.join('\n\n');
+}
+function plRenderSessionDoc(plan,s,idx){
+  const txt=plSessionDocText(plan,s,idx);
+  return `<div class="pl-docout">
+    <div class="pl-docout-top">
+      <div class="pl-docout-title">Automatische Kurzdokumentation</div>
+      <button class="pl-btn tiny" onclick="plCopyDoc('${s.id}')">Text kopieren</button>
+    </div>
+    <textarea class="pl-area" rows="7" readonly onclick="this.select()">${plEsc(txt)}</textarea>
+  </div>`;
+}
+function plCopyDoc(sid){
+  const s=plFindSession(sid); const plan=plFindSessionPlan(sid); if(!s||!plan) return;
+  const idx=plan.sessions.findIndex(x=>x.id===sid);
+  const txt=plSessionDocText(plan,s,idx);
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(()=>alert('Kurzdokumentation wurde kopiert.')).catch(()=>alert('Kopieren wurde vom Browser blockiert. Text im Feld markieren und manuell kopieren.'));
+  }else{
+    alert('Automatisches Kopieren wird hier nicht unterstützt. Text im Feld markieren und manuell kopieren.');
+  }
 }
 
 /* ---- Dezenter Verlaufs-Check entlang der Kurzformel ---- */
@@ -1044,7 +1281,8 @@ function plRenderSession(plan,s,idx){
       <div class="pl-field"><label>Gruppenzustand / Wirkdimension</label><select class="pl-select" onchange="plUpdateSession('${s.id}','wirkdim',this.value)">${wsel}</select></div>
     </div>
     <div class="pl-session-body">
-      <div class="pl-field"><label>Notizen zur Stunde</label><textarea class="pl-area" rows="2" placeholder="Beobachtungen, Ziel der Einheit, Besonderheiten …" onchange="plUpdateSession('${s.id}','notes',this.value)">${plEsc(s.notes)}</textarea></div>`;
+      ${plRenderFrame(plan,s)}
+      <div class="pl-field"><label>Weitere Notizen zur Stunde</label><textarea class="pl-area" rows="2" placeholder="Material, organisatorische Hinweise, Besonderheiten …" onchange="plUpdateSession('${s.id}','notes',this.value)">${plEsc(s.notes)}</textarea></div>`;
 
   (s.blocks||[]).forEach((b,bi)=>{ h+=plRenderBlock(plan,s,b,bi); });
 
@@ -1057,6 +1295,7 @@ function plRenderSession(plan,s,idx){
     h+=`</div>`;
   }
   h+=`<div class="pl-total">Gesamtdauer: <span id="tot-${s.id}">${plSessionTotal(s)}</span> Min.</div>`;
+  h+=plRenderSessionDoc(plan,s,idx);
   h+=`</div></div>`;
   return h;
 }
@@ -1080,8 +1319,8 @@ function plRenderBlock(plan,s,b,bi){
   if(warn){ h+=`<div class="pl-warn ${warn.level==='red'?'pl-warn-red':'pl-warn-amber'}">⚠ ${plEsc(warn.text)}</div>`; }
   h+=`<div class="pl-block-body">
       <div class="pl-field"><label>Dauer (Min.)</label><input type="number" min="0" step="1" class="pl-input pl-dur" value="${Number(b.duration)||0}" oninput="plUpdateBlock('${s.id}','${b.id}','duration',this.value);plRecalcTotal('${s.id}')"></div>
-      <div class="pl-field grow"><label>Phasen (aus dem Profil übernommen, frei editierbar)</label><textarea class="pl-area" rows="4" onchange="plUpdateBlock('${s.id}','${b.id}','phases',this.value)">${plEsc(b.phases)}</textarea></div>
-      <div class="pl-field grow"><label>Notiz zum Baustein</label><textarea class="pl-area" rows="4" placeholder="Anpassung, Material, Hinweis für Vertretung …" onchange="plUpdateBlock('${s.id}','${b.id}','note',this.value)">${plEsc(b.note)}</textarea></div>
+      <div class="pl-field grow"><label>Durchführungsphasen mit Anleitung (aus dem Profil übernommen, frei editierbar)</label><textarea class="pl-area" rows="7" onchange="plUpdateBlock('${s.id}','${b.id}','phases',this.value)">${plEsc(b.phases)}</textarea><button type="button" class="pl-btn tiny pl-phase-refresh" onclick="plRefreshBlockPhases('${s.id}','${b.id}')">aus Modulprofil neu übernehmen</button></div>
+      <div class="pl-field grow"><label>Notiz zum Baustein / Dokumentation</label><textarea class="pl-area" rows="7" placeholder="Durchführung, Anpassung, Beobachtung, Reaktion der Gruppe, Hinweis für Vertretung …" onchange="plUpdateBlock('${s.id}','${b.id}','note',this.value)">${plEsc(b.note)}</textarea></div>
     </div></div>`;
   return h;
 }
@@ -1097,7 +1336,7 @@ function plAddPlan(){
   plState.plans.push(p); plState.activePlanId=p.id; plSave(); plRender();
 }
 function plAddSingle(){
-  const s={id:plUid(),label:'',date:'',group:'',wirkdim:'',notes:'',blocks:[]};
+  const s=plEnsureSessionFrame({id:plUid(),label:'',date:'',group:'',wirkdim:'',notes:'',blocks:[]});
   const p={id:plUid(),name:'Neue Einzelstunde',kind:'single',setting:'p',sessions:[s]};
   plState.plans.push(p); plState.activePlanId=p.id; plSave(); plRender();
 }
@@ -1119,7 +1358,7 @@ function plFindSession(sid){ for(const p of plState.plans){ const s=(p.sessions|
 function plFindSessionPlan(sid){ for(const p of plState.plans){ if((p.sessions||[]).some(x=>x.id===sid)) return p; } return null; }
 function plAddSession(planId){
   const p=plState.plans.find(x=>x.id===planId); if(!p) return;
-  p.sessions.push({id:plUid(),label:'',date:'',group:'',wirkdim:'',notes:'',blocks:[]});
+  p.sessions.push(plEnsureSessionFrame({id:plUid(),label:'',date:'',group:'',wirkdim:'',notes:'',blocks:[]}));
   plSave(); plRenderMain();
 }
 function plUpdateSession(sid,field,val){ const s=plFindSession(sid); if(s){s[field]=val;plSave();} }
@@ -1152,6 +1391,16 @@ function plMoveBlock(sid,bid,dir){
   if(j<0||j>=s.blocks.length) return;
   [s.blocks[i],s.blocks[j]]=[s.blocks[j],s.blocks[i]]; plSave(); plRenderMain();
 }
+
+function plRefreshBlockPhases(sid,bid){
+  const s=plFindSession(sid); if(!s) return;
+  const b=(s.blocks||[]).find(x=>x.id===bid); if(!b) return;
+  if(b.phases && !confirm('Die aktuell eingetragenen Phasen werden durch die ausführlichen Angaben aus dem Modulprofil ersetzt. Fortfahren?')) return;
+  const ex=plExtractPhases(b.moduleId);
+  b.phases=ex.text;
+  if(!b.duration) b.duration=ex.duration;
+  plSave(); plRenderMain();
+}
 function plAddBlock(sid,moduleId){
   const s=plFindSession(sid); if(!s) return;
   const ex=plExtractPhases(moduleId);
@@ -1183,44 +1432,71 @@ function plModuleSelectable(moduleId,setting){
   return v===1 || v===0.4 || v===undefined;
 }
 function plRenderPicker(){
-  const q=(document.getElementById('plPickerSearch').value||'').trim().toLowerCase();
+  const search=document.getElementById('plPickerSearch');
+  const q=(search?search.value:'').trim().toLowerCase();
   const plan=plActivePlan();
   const session=plPickerTarget?plFindSession(plPickerTarget):null;
   const setting=plan?plan.setting:'p';
   const wcode=plSessionWirkCode(session);
   const wtext=wcode?`${wcode} ${PL_WLABEL[wcode]||''}`:'alle Wirkdimensionen';
   const body=document.getElementById('plPickerBody');
-  // nach Methode gruppieren, in Methodenreihenfolge
-  const order=['km','rz','im','rn','tr','hs','lk'];
-  let h=`<div class="pl-hint">Auswahl für <strong>${plEsc(PL_SETTING_LABEL[setting])}</strong> und <strong>${plEsc(wtext)}</strong>: Angezeigt werden nur Module, die zum Setting passen${wcode?' und zur gewählten Wirkdimension gehören':''}. Nicht vorgesehene Module und reine Ausnahme-Module sind ausgeblendet.</div>`;
-  let hits=0;
-  order.forEach(mkey=>{
-    const ids=Object.keys(M).filter(id=>M[id].m===mkey)
-      .filter(id=>plModuleSelectable(id,setting))
-      .filter(id=>plModuleMatchesWirkdim(id,wcode))
-      .filter(id=>{
-        if(!q) return true;
-        return (id+' '+M[id].n).toLowerCase().includes(q);
-      });
-    if(ids.length===0) return;
-    hits+=ids.length;
-    h+=`<div class="pl-pgroup-h">${plEsc(METHODNAME[mkey]||mkey)}</div>`;
-    ids.forEach(id=>{
-      const d=M[id], mc=MC[mkey];
-      const v=d[setting];
-      let suit='', cls='';
-      if(v===1||v===undefined){suit='geeignet';cls='pl-suit-ja';}
-      else {suit='Anpassung';cls='pl-suit-anp';}
-      const dots=['p','s','g','a'].map(k=>dot(d[k],SC[k])).join('');
-      h+=`<div class="pl-pitem" onclick="plPickModule('${id}')">
-        <span class="pl-pitem-id" style="color:${mc.fg}">${id}${d.star?' ★':''}</span>
-        <span class="pl-pitem-n">${plEsc(d.n)}</span>
-        <span class="pl-pitem-dots">${dots}</span>
-        <span class="pl-pitem-suit ${cls}">${suit}</span>
-      </div>`;
+  const bw=document.getElementById('plViewWirk');
+  const bm=document.getElementById('plViewMethod');
+  if(bw) bw.classList.toggle('on',plPickerView==='wirk');
+  if(bm) bm.classList.toggle('on',plPickerView==='method');
+
+  const baseIds=Object.keys(M)
+    .filter(id=>plModuleSelectable(id,setting))
+    .filter(id=>plModuleMatchesWirkdim(id,wcode))
+    .filter(id=>{
+      if(!q) return true;
+      return (id+' '+M[id].n+' '+plModuleWirkCodes(id).join(' ')).toLowerCase().includes(q);
     });
-  });
-  if(hits===0) h+='<div class="pl-empty">Kein geeignetes Modul gefunden. Suche anpassen oder ein anderes Setting wählen.</div>';
+
+  let h=`<div class="pl-hint">Auswahl für <strong>${plEsc(PL_SETTING_LABEL[setting])}</strong> und <strong>${plEsc(wtext)}</strong>: Angezeigt werden nur Module, die zum Setting passen${wcode?' und zur gewählten Wirkdimension gehören':''}. Nicht vorgesehene Module und reine Ausnahme-Module sind ausgeblendet.</div>`;
+  if(wcode){
+    h+=`<div class="pl-filter-pill">Aktiver Wirkdimensionsfilter: <strong>${plEsc(wtext)}</strong><button type="button" onclick="plClearPickerWirkdim()">Filter lösen</button></div>`;
+  }
+
+  function itemHtml(id){
+    const d=M[id], mc=MC[d.m];
+    const v=d[setting];
+    let suit='', cls='';
+    if(v===1||v===undefined){suit='geeignet';cls='pl-suit-ja';}
+    else {suit='Anpassung';cls='pl-suit-anp';}
+    const dots=['p','s','g','a'].map(k=>dot(d[k],SC[k])).join('');
+    return `<div class="pl-pitem" onclick="plPickModule('${id}')">
+      <span class="pl-pitem-id" style="color:${mc.fg}">${id}${d.star?' ★':''}</span>
+      <span class="pl-pitem-n">${plEsc(d.n)} <span style="color:var(--color-text-secondary);font-size:10.5px">· ${plEsc(METHODNAME[d.m]||d.m)}</span></span>
+      ${plWirkBadgeHtml(id)}
+      <span class="pl-pitem-dots">${dots}</span>
+      <span class="pl-pitem-suit ${cls}">${suit}</span>
+    </div>`;
+  }
+
+  let hits=0;
+  if(plPickerView==='method'){
+    const order=['km','rz','im','rn','tr','hs','lk'];
+    order.forEach(mkey=>{
+      const ids=baseIds.filter(id=>M[id].m===mkey);
+      if(ids.length===0) return;
+      hits+=ids.length;
+      h+=`<div class="pl-pgroup-h">${plEsc(METHODNAME[mkey]||mkey)}</div>`;
+      ids.forEach(id=>{ h+=itemHtml(id); });
+    });
+  }else{
+    const dims=wcode ? D.filter(dim=>dim.code===wcode) : D;
+    const seenForCount=[];
+    dims.forEach(dim=>{
+      const ids=dim.mods.filter(id=>baseIds.includes(id));
+      if(ids.length===0) return;
+      ids.forEach(id=>{ if(!seenForCount.includes(id)) seenForCount.push(id); });
+      h+=`<div class="pl-pgroup-h" style="color:${dim.fg}">${plEsc(dim.code)} ${plEsc(dim.name)}</div>`;
+      ids.forEach(id=>{ h+=itemHtml(id); });
+    });
+    hits=seenForCount.length;
+  }
+  if(hits===0) h+='<div class="pl-empty">Kein geeignetes Modul gefunden. Suche anpassen, Wirkdimensionsfilter lösen oder ein anderes Setting wählen.</div>';
   body.innerHTML=h;
 }
 function plPickModule(id){
@@ -1286,10 +1562,22 @@ function plSessionPrintHtml(plan,s,idx){
   if(s.group) meta.push(`Gruppe: ${plEsc(s.group)}`);
   if(s.wirkdim) meta.push(`Wirkdimension: ${plEsc(s.wirkdim)}`);
   h+=`<div class="pr-meta">${meta.join(' · ')}</div>`;
+  plEnsureSessionFrame(s);
+  const modeLabel=plFrameModeEffective(s,plan.setting)==='geronto'?'Geronto: direkter musikalischer Beginn':(plFrameModeEffective(s,plan.setting)==='crisis'?'Krise/Akut: kurze Stabilisierung':'reguläre Eingangsrunde');
+  const orientRows=[];
+  orientRows.push(['Einstiegslogik',modeLabel]);
+  if(s.orientGreeting) orientRows.push([plFrameModeEffective(s,plan.setting)==='geronto'?'Musikalischer Beginn / Ritual':'Begrüßung / Ankommen',s.orientGreeting]);
+  if(s.orientThemes) orientRows.push([plFrameModeEffective(s,plan.setting)==='geronto'?'Beobachtung zu Beginn':'Aktuelle Themen / Lage',s.orientThemes]);
+  if(s.orientDecision) orientRows.push(['Therapeutische Entscheidung',s.orientDecision]);
+  if(s.orientDoc) orientRows.push(['Dokumentationskern',s.orientDoc]);
+  if(orientRows.length){
+    h+='<table><tbody>'+orientRows.map(r=>`<tr><th>${plEsc(r[0])}</th><td>${plEsc(r[1])}</td></tr>`).join('')+'</tbody></table>';
+  }
   if(s.notes) h+=`<div class="pr-meta"><em>${plEsc(s.notes)}</em></div>`;
   (s.blocks||[]).forEach(b=>{ h+=plBlockPrintHtml(plan,b); });
   const vc=plVerlaufCheck(s);
   if(vc.seq) h+=`<div class="pr-meta">Verlauf: ${plEsc(vc.seq)}</div>`;
+  h+=`<h3>Automatische Kurzdokumentation</h3><div class="pr-phases">${plEsc(plSessionDocText(plan,s,idx))}</div>`;
   h+=`<div class="pr-total">Gesamtdauer: ${plSessionTotal(s)} Min.</div>`;
   return h;
 }
