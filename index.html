@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modulhandbuch Musiktherapie · Version 4.1 · 58 Module</title>
+<title>Modulhandbuch Musiktherapie · Version 4.5 · 58 Module</title>
 <style>
 /* =========================================================================
-   MODULHANDBUCH MUSIKTHERAPIE – interaktive Einzeldatei (Version 4.1 / Karte v10.7 / 58 Module)
+   MODULHANDBUCH MUSIKTHERAPIE – interaktive Einzeldatei (Version 4.5 / Karte v10.7 / 58 Module)
    Zusammenführung von Modullandkarte (HTML) + Modulhandbuch (DOCX).
 
    GESTALTUNGSENTSCHEIDUNGEN (dokumentiert für Nachfolge):
@@ -375,6 +375,26 @@ body{
   #printArea .pr-warn{font-size:9pt;color:#8a4a00;margin:2pt 0}
 }
 
+
+/* ===== Gebrauchsanweisung / Hilfe ===== */
+.help-wrap{max-width:860px;background:var(--color-surface);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:24px 28px;margin:0 auto 40px}
+.help-wrap h1{font-family:var(--font-serif);font-size:27px;font-weight:600;margin:0 0 8px;letter-spacing:-.01em;line-height:1.18;color:var(--color-text-primary)}
+.help-wrap h2{font-family:var(--font-serif);font-size:21px;font-weight:600;margin:28px 0 10px;line-height:1.25;color:var(--color-text-primary)}
+.help-wrap h3{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-secondary);margin:20px 0 7px}
+.help-wrap p{margin:0 0 11px;color:var(--color-text-primary)}
+.help-wrap ul,.help-wrap ol{margin:0 0 14px;padding-left:22px}
+.help-wrap li{margin:4px 0}
+.help-lead{font-size:15.5px;color:var(--color-text-secondary);margin-bottom:18px!important}
+.help-card{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:9px;padding:13px 15px;margin:12px 0 16px}
+.help-card p:last-child{margin-bottom:0}
+.help-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 16px}
+.help-step{border:0.5px solid var(--color-border-tertiary);border-radius:9px;padding:12px 14px;background:var(--color-surface)}
+.help-step strong{display:block;margin-bottom:4px;color:var(--color-text-primary)}
+.help-flow{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 16px}
+.help-flow span{font-size:12px;border:0.5px solid var(--color-border-secondary);border-radius:18px;padding:5px 9px;background:var(--color-background-secondary)}
+.help-example{font-family:var(--font-sans);font-size:13px;line-height:1.5;background:#fff;border:0.5px solid var(--color-border-secondary);border-radius:9px;padding:12px 14px;margin:8px 0 14px;white-space:pre-wrap;color:var(--color-text-primary)}
+@media(max-width:700px){.help-wrap{padding:18px 14px}.help-grid{grid-template-columns:1fr}.help-wrap h1{font-size:23px}.help-wrap h2{font-size:19px}}
+
 /* =====================================================================
    MOBILE-OPTIMIERUNG (nachträglich ergänzt – Juni 2026)
    PROBLEM (für Nachfolge dokumentiert):
@@ -425,13 +445,14 @@ body{
 <header class="app-header">
   <h1 class="app-title">Modulhandbuch Musiktherapie</h1>
   <p class="app-sub"><b>58 Module</b> · 7 Methoden · 6 Wirkdimensionen · 4 Settings (TK Psychosomatik · TK Sucht · Gerontopsychiatrie · Akute Entgiftung)</p>
-  <p class="app-sub" style="margin-top:2px">Tom Jansen, Musiktherapeut <span style="font-weight:400;color:var(--color-text-secondary)">(Version 4.1 · Juni 2026)</span></p>
+  <p class="app-sub" style="margin-top:2px">Tom Jansen, Musiktherapeut <span style="font-weight:400;color:var(--color-text-secondary)">(Version 4.5 · Juni 2026)</span></p>
 </header>
 
 <nav class="tabs" role="tablist" aria-label="Ansicht wechseln">
   <button class="tab on" id="tab-karte"  role="tab" aria-selected="true"  onclick="showView('karte',this)">Modullandkarte</button>
   <button class="tab"    id="tab-handbuch" role="tab" aria-selected="false" onclick="showView('handbuch',this)">Handbuch &amp; Grundlagen</button>
   <button class="tab"    id="tab-planung" role="tab" aria-selected="false" onclick="showView('planung',this)">Planung</button>
+  <button class="tab"    id="tab-hilfe" role="tab" aria-selected="false" onclick="showView('hilfe',this)">Gebrauchsanweisung</button>
 </nav>
 
 <!-- ============ ANSICHT 1: MODULLANDKARTE ============ -->
@@ -542,6 +563,100 @@ body{
     </aside>
     <div class="pl-main" id="plMain"></div>
   </div>
+</section>
+
+
+
+<!-- ============ ANSICHT 4: GEBRAUCHSANWEISUNG ============ -->
+<section class="view" id="view-hilfe" role="tabpanel" aria-labelledby="tab-hilfe">
+  <article class="help-wrap">
+    <h1>Gebrauchsanweisung zur interaktiven Planungs- und Dokumentationsfassung</h1>
+    <p class="help-lead">Diese Ansicht erklärt, wie die Modullandkarte, das Handbuch und die Planung zusammenarbeiten. Sie ist als Arbeitsanleitung für den klinischen Alltag gedacht: schnell genug für die Vorbereitung, genau genug für eine nachvollziehbare Dokumentation.</p>
+
+    <div class="help-card">
+      <p><strong>Grundprinzip:</strong> Die interaktive Fassung ersetzt keine therapeutische Einschätzung. Sie hilft dabei, die eigene klinische Entscheidung sichtbar zu machen: Ausgangslage erkennen, Wirkdimension wählen, Bausteine passend dosieren, Durchführung anpassen und die Stunde anschließend fachlich dokumentieren.</p>
+    </div>
+
+    <h2>1. Drei Arbeitsbereiche</h2>
+    <div class="help-grid">
+      <div class="help-step"><strong>Modullandkarte</strong>Sie dient der schnellen Orientierung. Hier lassen sich Module nach Setting, Methode, Kernmodul, Vertretungseignung und weiteren Kriterien filtern. Ein Klick auf eine Kachel öffnet das vollständige Modulprofil.</div>
+      <div class="help-step"><strong>Handbuch &amp; Grundlagen</strong>Dieser Bereich enthält die fachliche Masterlogik: Entscheidungslogik, Wirkdimensionen, Methoden, Settinghinweise, Dokumentationsbausteine und die vollständigen Modulprofile.</div>
+      <div class="help-step"><strong>Planung</strong>Hier werden Einzelstunden oder Behandlungsverläufe erstellt. Jede Stunde erhält einen Stundenrahmen, eine therapeutische Entscheidung, passende Bausteine, editierbare Phasen und eine automatische Kurzdokumentation.</div>
+      <div class="help-step"><strong>Gebrauchsanweisung</strong>Dieser Bereich erklärt die Bedienung und die fachliche Logik der interaktiven Fassung. Er ist bewusst knapp gehalten und soll direkt während der Arbeit nutzbar bleiben.</div>
+    </div>
+
+    <h2>2. Typischer Ablauf einer Stunde</h2>
+    <p>Eine reguläre musiktherapeutische Stunde beginnt nicht mit der Methode, sondern mit Kontakt und Orientierung. In Psychosomatik, Sucht und Akutbereich steht am Anfang meist eine kurze Begrüßung und eine Nachfrage zur aktuellen Lage. Danach wird entschieden, welche therapeutische Richtung heute tragfähig ist.</p>
+    <div class="help-flow">
+      <span>Begrüßung</span><span>aktuelle Lage</span><span>Gruppenzustand</span><span>Wirkdimension</span><span>Bausteinwahl</span><span>Durchführung</span><span>Beobachtung</span><span>Kurzdokumentation</span>
+    </div>
+    <p>In der Gerontopsychiatrie ist die Logik anders. Dort beginnt die Stunde in der Regel nicht mit einer Gesprächsrunde, sondern direkt musikalisch: mit vertrautem Lied, Klangritual, Rhythmus, Summen oder einem wiederkehrenden musikalischen Anfang. Die Einschätzung entsteht stärker aus Beobachtung: Wachheit, Blickkontakt, Unruhe, Mitsingen, Rückzug, Orientierung und affektive Resonanz.</p>
+
+    <h2>3. Neue Stunde oder Verlauf anlegen</h2>
+    <ol>
+      <li>Den Reiter <strong>Planung</strong> öffnen.</li>
+      <li>Entweder <strong>Neuer Verlauf</strong> oder <strong>Einzelstunde</strong> wählen.</li>
+      <li>Setting, Datum, Gruppe und gegebenenfalls Thema eintragen.</li>
+      <li>Falls der Schwerpunkt bereits klar ist, eine Wirkdimension auswählen. Wenn noch offen ist, was die Gruppe braucht, bleibt die Wirkdimension zunächst leer.</li>
+      <li>Den Stundenrahmen ausfüllen: Einstieg, aktuelle Themen oder Beobachtung, therapeutische Entscheidung und Dokumentationskern.</li>
+    </ol>
+
+    <h2>4. Stundenrahmen nutzen</h2>
+    <p>Der Stundenrahmen bildet die klinische Orientierung vor der eigentlichen Intervention ab. Er beantwortet nicht die Frage „Was mache ich heute?“, sondern zuerst: „Was zeigt sich gerade, und was braucht die Gruppe jetzt?“</p>
+    <h3>Reguläre Eingangsrunde</h3>
+    <p>Geeignet vor allem für TK Psychosomatik, TK Sucht und stabile Gruppen im Akutbereich. Hier werden Begrüßung, aktuelle Themen, Stimmung, Druck, Konflikte, Erschöpfung, Kontaktfähigkeit oder Gruppendynamik knapp erfasst.</p>
+    <h3>Geronto: direkter musikalischer Beginn</h3>
+    <p>Geeignet für Gerontopsychiatrie. Hier wird nicht zuerst abgefragt, sondern musikalisch begonnen. Der Einstieg dient Orientierung, Vertrautheit und Sicherheit. Beobachtet werden Wachheit, Blickkontakt, Unruhe, Beteiligung, Wiedererkennen und Resonanz.</p>
+    <h3>Krise / Akut: kurze Stabilisierung</h3>
+    <p>Geeignet bei deutlich erhöhter Anspannung, Überflutung oder geringer Belastbarkeit. Hier gilt: kurz, klar, reizarm, freiwillig und jederzeit abbrechbar. Reflexionsdruck wird vermieden.</p>
+
+    <h2>5. Bausteine auswählen</h2>
+    <p>Der Baustein-Picker kann nach <strong>Wirkdimension</strong> oder nach <strong>Methode</strong> angezeigt werden. Für die klinische Planung ist die Wirkdimensionsansicht oft hilfreicher, weil sie von der therapeutischen Zielrichtung ausgeht. Die Methodenansicht bleibt sinnvoll, wenn methodische Vielfalt geprüft oder bewusst eine bestimmte Arbeitsweise gewählt werden soll.</p>
+    <ol>
+      <li>In der Stunde auf <strong>Baustein hinzufügen</strong> klicken.</li>
+      <li>Oben wählen: <strong>nach Wirkdimension</strong> oder <strong>nach Methode</strong>.</li>
+      <li>Den aktiven Setting- und Wirkdimensionsfilter beachten.</li>
+      <li>Falls zu wenig angezeigt wird, den Wirkdimensionsfilter lösen.</li>
+      <li>Passendes Modul auswählen und danach die Phasen prüfen.</li>
+    </ol>
+    <div class="help-card">
+      <p><strong>Merksatz:</strong> Die Codes wie KM-1, RN-2 oder W4 sind Planungsmarker. Sie helfen beim Finden und Sortieren. Für die Dokumentation werden sie in fachlich lesbare Sprache übersetzt.</p>
+    </div>
+
+    <h2>6. Phasen bearbeiten</h2>
+    <p>Nach dem Einfügen eines Bausteins werden die Phasen aus dem Modulprofil übernommen. Sie enthalten Durchführungshinweise, Zielrichtung und Ablauf. Diese Texte sind keine starre Vorschrift. Sie dürfen vor der Stunde an Gruppe, Tagesform, Setting und Zeitrahmen angepasst werden.</p>
+    <p>Wenn ein älterer Baustein nur eine knappe Phasenfassung enthält, kann die ausführliche Fassung über <strong>aus Modulprofil neu übernehmen</strong> erneut geladen werden. Eigene Anpassungen sollten deshalb nur dann überschrieben werden, wenn sie nicht mehr gebraucht werden.</p>
+
+    <h2>7. Automatische Kurzdokumentation verwenden</h2>
+    <p>Die automatische Kurzdokumentation erstellt aus den Einträgen der Stunde einen fachlichen Fließtext. Sie verwendet keine internen Kürzel als Hauptsprache, sondern übersetzt Wirkdimensionen und Methoden in klinisch lesbare Formulierungen.</p>
+    <p>Der Text ist als Rohfassung gedacht. Vor dem Eintrag ins Dokumentationssystem sollte er geprüft, gekürzt und konkretisiert werden. Besonders wichtig sind beobachtbare Reaktionen der Patient:innen und die eigene therapeutische Entscheidung.</p>
+    <div class="help-example">Beispielstruktur:
+Die musiktherapeutische Einheit fand im Setting TK Sucht statt. Zu Beginn zeigte sich die Gruppe angespannt und motorisch unruhig. Daraus ergab sich der fachliche Schwerpunkt Stabilisierung, Orientierung und Regulation. Eingesetzt wurde eine körper- und stimmbezogene musiktherapeutische Arbeit zur Orientierung und Beruhigung. Im Verlauf reduzierte sich die Unruhe sichtbar; mehrere Teilnehmende konnten sich auf das Summen einlassen, eine Person nutzte Zuhören als sichere Teilnahmeform. Für die nächste Stunde bleibt eine niedrig dosierte Aktivierung sinnvoll.</div>
+
+    <h2>8. Dokumentationsqualität prüfen</h2>
+    <p>Eine gute Kurzdokumentation beantwortet fünf Fragen:</p>
+    <ol>
+      <li>Wie war die Ausgangslage?</li>
+      <li>Welche therapeutische Richtung wurde gewählt?</li>
+      <li>Welche Intervention wurde durchgeführt?</li>
+      <li>Wie reagierte die Gruppe beobachtbar?</li>
+      <li>Was folgt daraus für die nächste Stunde oder den weiteren Verlauf?</li>
+    </ol>
+    <p>Zu vermeiden sind reine Methodenlisten ohne Beobachtung, reine Stimmungsbeschreibungen ohne therapeutische Entscheidung und Formulierungen, die nur aus internen Codes bestehen. Die Dokumentation soll auch für Kolleg:innen anderer Berufsgruppen nachvollziehbar bleiben.</p>
+
+    <h2>9. Sichern, Exportieren und Weitergeben</h2>
+    <p>Die Planung wird lokal im Browser gespeichert. Das bedeutet: Sie bleibt auf diesem Gerät und in diesem Browser erhalten, solange Browserdaten nicht gelöscht werden. Für Sicherung, Gerätewechsel oder Weitergabe wird der JSON-Export genutzt.</p>
+    <ol>
+      <li>Regelmäßig <strong>Export (JSON)</strong> nutzen.</li>
+      <li>Die Datei mit Datum abspeichern, zum Beispiel <em>musiktherapie_planung_2026-06-10.json</em>.</li>
+      <li>Beim Import wird der aktuelle Planungsstand ersetzt. Deshalb vorher exportieren, wenn der bestehende Stand erhalten bleiben soll.</li>
+    </ol>
+
+    <h2>10. Praktische Arbeitsregel</h2>
+    <div class="help-card">
+      <p><strong>Erst klinisch denken, dann technisch klicken.</strong> Die Datei ist dann am stärksten, wenn sie deine therapeutische Logik unterstützt: Was zeigt sich? Was braucht die Gruppe? Wie niedrig oder hoch darf ich dosieren? Was war beobachtbar? Was ist für die nächste Stunde wichtig?</p>
+    </div>
+  </article>
 </section>
 
 <!-- ============ MODULPICKER (Baustein wählen) ============ -->
