@@ -34,7 +34,7 @@
   --border-radius-md:10px;
 
   /* Settingfarben (aus v10.7) */
-  --c-psy:#185FA5; --c-sucht:#854F0B; --c-ger:#3B6D11; --c-akut:#C04A00;
+  --c-psy:#1A6FBF; --c-sucht:#BA7517; --c-ger:#4A8A18; --c-akut:#D44000;
 }
 
 *{box-sizing:border-box}
@@ -104,6 +104,9 @@ body{
 .fb{font-size:11px;padding:3px 9px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-surface);cursor:pointer;color:var(--color-text-secondary)}
 .fb.on{font-weight:600;background:var(--color-background-secondary)}
 .fb:hover{background:var(--color-background-secondary)}
+.fb-m{font-size:11px;padding:3px 9px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-surface);cursor:pointer;color:var(--color-text-secondary)}
+.fb-m.on{font-weight:700}
+.fb-m:hover{filter:brightness(.95)}
 .wrow{margin-bottom:6px}
 .whead{display:flex;align-items:baseline;gap:7px;margin-bottom:5px;flex-wrap:wrap}
 .wbadge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;flex-shrink:0}
@@ -121,13 +124,24 @@ body{
 .sdots{display:flex;gap:3px}
 .sd{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
 .wdiv{height:0.5px;background:var(--color-border-tertiary);margin:6px 0 10px}
+.w2sg{margin-bottom:9px}
+.w2sghead{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.w2sgbadge{font-size:10.5px;font-weight:600;padding:2px 10px;border-radius:20px;flex-shrink:0}
+.w2sgline{flex:1;height:0.5px;background:var(--color-border-tertiary)}
 .vbadges{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px}
 .vb{font-size:8.2px;line-height:1;padding:2px 4px;border-radius:10px;border:0.5px solid currentColor;opacity:.82;white-space:nowrap}
 .vb-ok{color:#2D6A1F;background:rgba(45,106,31,.07)}
 .vb-exp{color:#8A4A00;background:rgba(138,74,0,.07)}
 .vb-rahm{color:#0F6E56;background:rgba(15,110,86,.07)}
 .vb-vt{color:#993C1D;background:rgba(153,60,29,.08);font-weight:600}
-.ml-note{font-size:11px;color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:8px 10px;margin:7px 0 10px;background:var(--color-background-secondary)}
+.ml-note{font-size:11px;color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:8px 10px;margin:0;background:var(--color-background-secondary)}
+.ml-hinweise{border:0.5px solid var(--color-border-tertiary);border-radius:8px;margin:7px 0 10px;background:var(--color-background-secondary);overflow:hidden}
+.ml-hinweise summary{font-size:11px;font-weight:600;color:var(--color-text-secondary);padding:7px 10px;cursor:pointer;list-style:none;user-select:none}
+.ml-hinweise summary::-webkit-details-marker{display:none}
+.ml-hinweise summary::after{content:" ▾";font-size:10px}
+.ml-hinweise[open] summary::after{content:" ▴"}
+.ml-hinweise summary:hover{color:var(--color-text-primary)}
+.ml-hinweise-grid{display:flex;flex-direction:column;gap:6px;padding:0 10px 10px}
 .tchips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
 .tchip{font-size:10.5px;line-height:1.3;padding:6px 8px;border-radius:8px;border:0.5px solid #5DCAA5;background:#E1F5EE;color:#0F6E56;max-width:190px}
 .no-hits{font-size:13px;color:var(--color-text-secondary);padding:18px 4px;display:none}
@@ -386,8 +400,7 @@ body{
 <header class="app-header">
   <h1 class="app-title">Modulhandbuch Musiktherapie</h1>
   <p class="app-sub"><b>58 Module</b> · 7 Methoden · 6 Wirkdimensionen · 4 Settings (TK Psychosomatik · TK Sucht · Gerontopsychiatrie · Akute Entgiftung)</p>
-  <p class="app-sub" style="margin-top:2px">Tom Jansen, Musiktherapeut</p>
-  <span class="app-ver">Version 4.0 · 58 Module · Orientierungsmodule · Vertretungspfade · Akut-Sicherheitscheck · Rollenklärung · W2 intern gegliedert · Planung mit Einzelstunden · Juni 2026</span>
+  <p class="app-sub" style="margin-top:2px">Tom Jansen, Musiktherapeut <span style="font-weight:400;color:var(--color-text-secondary)">(Version 4.0 · Juni 2026)</span></p>
 </header>
 
 <nav class="tabs" role="tablist" aria-label="Ansicht wechseln">
@@ -407,23 +420,23 @@ body{
   <div class="ml">
     <div class="ml-leg">
       <span style="font-weight:600;color:var(--color-text-primary)">Methode:</span>
-      <span><span class="leg-sq" style="background:#EEEDFE;border:0.5px solid #AFA9EC"></span> Bodysongs</span>
-      <span><span class="leg-sq" style="background:#E1F5EE;border:0.5px solid #5DCAA5"></span> Rezeptiv</span>
-      <span><span class="leg-sq" style="background:#E6F1FB;border:0.5px solid #85B7EB"></span> Improvisation</span>
-      <span><span class="leg-sq" style="background:#EAF3DE;border:0.5px solid #97C459"></span> Rhythmik/NMT</span>
-      <span><span class="leg-sq" style="background:#FAEEDA;border:0.5px solid #EF9F27"></span> Trommel</span>
-      <span><span class="leg-sq" style="background:#FAECE7;border:0.5px solid #F0997B"></span> Hypnosystem.</span>
-      <span><span class="leg-sq" style="background:#FBEAF0;border:0.5px solid #ED93B1"></span> Life Kinetik</span>
+      <span><span class="leg-sq" style="background:#FFF3CC;border:0.5px solid #E8C030"></span> Bodysongs (KM)</span>
+      <span><span class="leg-sq" style="background:#E1F5EE;border:0.5px solid #5DCAA5"></span> Rezeptiv (RZ)</span>
+      <span><span class="leg-sq" style="background:#A8DFF0;border:0.5px solid #1890B8"></span> Improvisation (IM)</span>
+      <span><span class="leg-sq" style="background:#FDE8CC;border:0.5px solid #D4802A"></span> Rhythmik/NMT (RN)</span>
+      <span><span class="leg-sq" style="background:#F5E0E0;border:0.5px solid #C05050"></span> Trommel (TR)</span>
+      <span><span class="leg-sq" style="background:#EEEDFE;border:0.5px solid #7F77DD"></span> Hypnosystem. (HS)</span>
+      <span><span class="leg-sq" style="background:#F8E0F0;border:0.5px solid #C060A0"></span> Life Kinetik (LK)</span>
       <span class="leg-sep"></span>
       <span style="font-weight:600;color:var(--color-text-primary)">Setting:</span>
-      <span><span class="leg-sd" style="background:#185FA5"></span> Psy</span>
-      <span><span class="leg-sd" style="background:#854F0B"></span> Sucht</span>
-      <span><span class="leg-sd" style="background:#3B6D11"></span> Ger</span>
-      <span><span class="leg-sd" style="background:#C04A00"></span> Akut</span>
+      <span><span class="leg-sd" style="background:#1A6FBF"></span> Psy</span>
+      <span><span class="leg-sd" style="background:#BA7517"></span> Sucht</span>
+      <span><span class="leg-sd" style="background:#4A8A18"></span> Ger</span>
+      <span><span class="leg-sd" style="background:#D44000"></span> Akut</span>
       <span class="leg-sep"></span>
-      <span><span class="leg-sd" style="background:#185FA5;opacity:.3"></span> Anpassung</span>
+      <span><span class="leg-sd" style="background:#1A6FBF;opacity:.3"></span> Anpassung</span>
       <span><span class="leg-sd" style="background:#C8C7BF"></span> nein</span>
-      <span><span class="leg-sd" style="background:transparent;border:1.5px dashed #C04A00;display:inline-block;width:7px;height:7px;border-radius:50%;vertical-align:middle"></span> Ausnahme</span>
+      <span><span class="leg-sd" style="background:transparent;border:1.5px dashed #D44000;display:inline-block;width:7px;height:7px;border-radius:50%;vertical-align:middle"></span> Ausnahme</span>
       <span class="leg-sep"></span>
       <span>⇅ mehrere Dim. &nbsp;·&nbsp; ⊕ integrativ &nbsp;·&nbsp; ★ Kern &nbsp;·&nbsp; Vertiefung = therapeutische Erfahrung nötig</span>
       <span class="leg-sep"></span>
@@ -432,13 +445,23 @@ body{
       <span><span class="vb vb-rahm">Ergänzung</span></span>
     </div>
 
+    <details class="ml-hinweise">
+      <summary>Hinweise &amp; Quickguides</summary>
+      <div class="ml-hinweise-grid">
+        <div class="ml-note"><strong>Nutzung:</strong> Auf eine Modulkachel tippen öffnet das vollständige Profil (Steckbrief, Ablauf, Settinghinweise, Checkpoints). · <strong>Vertretung &amp; Einsatzlogik:</strong> „vertretungsgeeignet“ = robustes Modul für Vertretungssituationen; „therapeutische Erfahrung nötig“ = erhöhter Prozess- und Rückführungsanspruch; „Ergänzung / Abschluss“ = integrativer Baustein.</div>
+        <div class="ml-note"><strong>Orientierungsmodule:</strong> IM-9 <em>Instrumentenvorstellung &amp; Erkundung</em> und TR-9 <em>Trommeltechnik – Grundlagen</em> dienen als sichere technische Einstiegsmodule. Sie führen in Material, Klangmöglichkeiten, Spielweise und Gruppenrahmen ein und eignen sich besonders für neue Gruppen, Vertretungssituationen sowie Patient:innen mit Unsicherheit, Scham, Leistungsangst oder wenig musikalischer Vorerfahrung.</div>
+        <div class="ml-note"><strong>Vertretung in 30 Minuten:</strong> Bei unruhiger Gruppe zuerst KM-1 oder RN-1; bei erschöpfter Gruppe RN-2, IM-9 oder LK-1; bei unsicherer neuer Gruppe IM-9 oder TR-9. In der Gerontopsychiatrie eignen sich RZ-4, KM-4 oder RN-2 vereinfacht; in der Akuten Entgiftung KM-1 Kurzform, RZ-4 oder RN-1 minimal. Bei unklarer Lage gilt: W1 vor W2, Stabilisierung vor Ausdruck.</div>
+        <div class="ml-note"><strong>Akut-Sicherheitscheck:</strong> Vor Akut-Einsatz prüfen: ausreichende Orientierung, stabile vegetative Lage, Freiwilligkeit mit Pausen- und Abbruchrecht sowie kurze, reizarme Durchführung ohne Reflexionsdruck. Bei Hinweisen auf Delir, akute Intoxikationsnähe, Psychose, akute Suizidalität oder massive Instabilität keine eigenständige Gruppenintervention ohne Rücksprache mit Pflege, ärztlichem Dienst oder Behandlungsteam.</div>
+        <div class="ml-note"><strong>Nutzung durch Kolleg:innen:</strong> Vertretungsgeeignete, niedrig dosierte Module können Orientierung geben, wenn Setting, Rahmen und Abbruchmöglichkeiten geklärt sind. Vertiefende Ausdrucks-, Biografie-, Improvisations- und hypnosystemische Module gehören in musiktherapeutisch qualifizierte Hände oder in enge fachliche Rücksprache.</div>
+      </div>
+    </details>
     <div class="ml-filters">
       <span class="fl">Filter:</span>
       <button class="fb on" data-k="all" onclick="fs('all',this)">Alle</button>
-      <button class="fb" data-k="p" onclick="fs('p',this)" style="border-color:#185FA5;color:#185FA5">Psychosomatik</button>
-      <button class="fb" data-k="s" onclick="fs('s',this)" style="border-color:#854F0B;color:#854F0B">Sucht TK</button>
-      <button class="fb" data-k="g" onclick="fs('g',this)" style="border-color:#3B6D11;color:#3B6D11">Geronto</button>
-      <button class="fb" data-k="a" onclick="fs('a',this)" style="border-color:#C04A00;color:#C04A00">Akut-Entgiftung</button>
+      <button class="fb" data-k="p" onclick="fs('p',this)" style="border-color:#1A6FBF;color:#1A6FBF">Psychosomatik</button>
+      <button class="fb" data-k="s" onclick="fs('s',this)" style="border-color:#BA7517;color:#BA7517">Sucht TK</button>
+      <button class="fb" data-k="g" onclick="fs('g',this)" style="border-color:#4A8A18;color:#4A8A18">Geronto</button>
+      <button class="fb" data-k="a" onclick="fs('a',this)" style="border-color:#D44000;color:#D44000">Akut-Entgiftung</button>
       <span class="leg-sep"></span>
       <button class="fb" data-k="kern" onclick="fs('kern',this)" style="border-color:#534AB7;color:#534AB7">★ Kernmodule</button>
       <button class="fb" data-k="integ" onclick="fs('integ',this)" style="border-color:#0F6E56;color:#0F6E56">⊕ Integrativ</button>
@@ -449,13 +472,18 @@ body{
       <button class="fb" data-k="vrahm" onclick="fs('vrahm',this)" style="border-color:#0F6E56;color:#0F6E56">Ergänzung / Abschluss</button>
     </div>
 
-    <div class="ml-note"><strong>Tipp:</strong> Auf eine Modulkachel tippen öffnet das vollständige Profil (Steckbrief, Ablauf, Settinghinweise, Checkpoints). · <strong>Vertretung &amp; Einsatzlogik:</strong> „vertretungsgeeignet“ = robustes Modul für Vertretungssituationen; „therapeutische Erfahrung nötig“ = erhöhter Prozess- und Rückführungsanspruch; „Ergänzung / Abschluss“ = integrativer Baustein.</div>
-    <div class="ml-note"><strong>Orientierungsmodule:</strong> IM-9 <em>Instrumentenvorstellung &amp; Erkundung</em> und TR-9 <em>Trommeltechnik – Grundlagen</em> dienen als sichere technische Einstiegsmodule. Sie führen in Material, Klangmöglichkeiten, Spielweise und Gruppenrahmen ein und eignen sich besonders für neue Gruppen, Vertretungssituationen sowie Patient:innen mit Unsicherheit, Scham, Leistungsangst oder wenig musikalischer Vorerfahrung.</div>
-    <div class="ml-note"><strong>Vertretung in 30 Minuten:</strong> Bei unruhiger Gruppe zuerst KM-1 oder RN-1; bei erschöpfter Gruppe RN-2, IM-9 oder LK-1; bei unsicherer neuer Gruppe IM-9 oder TR-9. In der Gerontopsychiatrie eignen sich RZ-4, KM-4 oder RN-2 vereinfacht; in der Akuten Entgiftung KM-1 Kurzform, RZ-4 oder RN-1 minimal. Bei unklarer Lage gilt: W1 vor W2, Stabilisierung vor Ausdruck.</div>
-    <div class="ml-note"><strong>Akut-Sicherheitscheck:</strong> Vor Akut-Einsatz prüfen: ausreichende Orientierung, stabile vegetative Lage, Freiwilligkeit mit Pausen- und Abbruchrecht sowie kurze, reizarme Durchführung ohne Reflexionsdruck. Bei Hinweisen auf Delir, akute Intoxikationsnähe, Psychose, akute Suizidalität oder massive Instabilität keine eigenständige Gruppenintervention ohne Rücksprache mit Pflege, ärztlichem Dienst oder Behandlungsteam.</div>
-    <div class="ml-note"><strong>Nutzung durch Kolleg:innen:</strong> Vertretungsgeeignete, niedrig dosierte Module können Orientierung geben, wenn Setting, Rahmen und Abbruchmöglichkeiten geklärt sind. Vertiefende Ausdrucks-, Biografie-, Improvisations- und hypnosystemische Module gehören in musiktherapeutisch qualifizierte Hände oder in enge fachliche Rücksprache.</div>
+    <div class="ml-filters" style="margin-top:5px">
+      <span class="fl">Methode:</span>
+      <button class="fb-m on" data-m="all" onclick="fm('all',this)">Alle</button>
+      <button class="fb-m" data-m="km" onclick="fm('km',this)" style="border-color:#E8C030;color:#7A5C00;background:#FFF3CC">KM</button>
+      <button class="fb-m" data-m="im" onclick="fm('im',this)" style="border-color:#1890B8;color:#054862;background:#A8DFF0">IM</button>
+      <button class="fb-m" data-m="rz" onclick="fm('rz',this)" style="border-color:#5DCAA5;color:#085041;background:#E1F5EE">RZ</button>
+      <button class="fb-m" data-m="rn" onclick="fm('rn',this)" style="border-color:#D4802A;color:#6A3A08;background:#FDE8CC">RN</button>
+      <button class="fb-m" data-m="tr" onclick="fm('tr',this)" style="border-color:#C05050;color:#7A1414;background:#F5E0E0">TR</button>
+      <button class="fb-m" data-m="hs" onclick="fm('hs',this)" style="border-color:#7F77DD;color:#26215C;background:#EEEDFE">HS</button>
+      <button class="fb-m" data-m="lk" onclick="fm('lk',this)" style="border-color:#C060A0;color:#6B1858;background:#F8E0F0">LK</button>
+    </div>
 
-    <div class="ml-note"><strong>Steckbrief-Konsistenz geprüft:</strong> Alle 58 Modulprofile folgen nun demselben Prüfraster: Hauptwirkung, Modulart, Vertretungseignung, Settingeignung und Planbarkeit sind in der Masterfassung eindeutig ausgewiesen. Die HTML-Karte bleibt bewusst kompakt; sie zeigt die geprüfte Logik über Kern-, Integrations-, Vertiefungs- und Vertretungskennzeichnungen.</div>
 <div id="mlb"></div>
     <div class="no-hits" id="noHits">Keine Module gefunden. Suche oder Filter anpassen.</div>
   </div>
@@ -526,12 +554,12 @@ body{
 <script>
 /* ---- Landkarten-Daten (aktualisiert aus Modullandkarte v10.7 / 58 Module) ---- */
 const MC={
-  km:{bg:'#EEEDFE',fg:'#3C3489'},rz:{bg:'#E1F5EE',fg:'#0F6E56'},
-  im:{bg:'#E6F1FB',fg:'#185FA5'},rn:{bg:'#EAF3DE',fg:'#3B6D11'},
-  tr:{bg:'#FAEEDA',fg:'#854F0B'},hs:{bg:'#FAECE7',fg:'#993C1D'},
-  lk:{bg:'#FBEAF0',fg:'#993556'}
+  km:{bg:'#FFF3CC',fg:'#7A5C00'},rz:{bg:'#E1F5EE',fg:'#085041'},
+  im:{bg:'#A8DFF0',fg:'#054862'},rn:{bg:'#FDE8CC',fg:'#6A3A08'},
+  tr:{bg:'#F5E0E0',fg:'#7A1414'},hs:{bg:'#EEEDFE',fg:'#26215C'},
+  lk:{bg:'#F8E0F0',fg:'#6B1858'}
 };
-const SC={p:'#185FA5',s:'#854F0B',g:'#3B6D11',a:'#C04A00'};
+const SC={p:'#1A6FBF',s:'#BA7517',g:'#4A8A18',a:'#D44000'};
 const M={
   'KM-1':{n:'Ankommen & Grounding',m:'km',p:1,s:1,g:1,a:1,star:1},
   'KM-2':{n:'Atem & Stimme',m:'km',p:1,s:1,g:1,a:1},
@@ -650,6 +678,7 @@ function chip(id){
   if(VOK.has(id)) keys.push('vok');
   if(VEXP.has(id)) keys.push('vexp');
   if(VRAHM.has(id)) keys.push('vrahm');
+  keys.push(d.m);
   const sk=keys.join(',');
   const tag=cnt[id]>1?'⇅':'';
   const star=d.star?' ★':'';
@@ -671,8 +700,18 @@ function chip(id){
   ${tagHtml}<div class="sdots">${dots}</div>${badges}
 </div>`;
 }
-function w2Box(){
-  return `<div class="ml-note"><strong>W2 intern gegliedert:</strong> W2 bleibt eine Wirkdimension ohne zusätzlichen Filter. Zur fachlichen Auswahl wird W2 intern unterschieden in <strong>W2a Sanfte Aktivierung</strong> (ruhig, niedrig dosiert), <strong>W2b Körperlich-rhythmische Aktivierung</strong> (Bewegung, Puls, Rhythmus, körperliche Energie) und <strong>W2c Kognitiv-motorische / technisch-orientierende Aktivierung</strong> (Life Kinetik, IM-9 und TR-9).</div>`;
+function w2SubChips(){
+  const subs=[
+    {key:'a',label:'W2a – Sanfte Aktivierung',bg:'#EAF3DE',fg:'#3B6D11',border:'#C0DD97'},
+    {key:'b',label:'W2b – Körperlich-rhythmisch',bg:'#E6F1FB',fg:'#185FA5',border:'#B5D4F4'},
+    {key:'c',label:'W2c – Kognitiv / technisch',bg:'#EEEDFE',fg:'#3C3489',border:'#CECBF6'}
+  ];
+  const w2mods=D.find(d=>d.code==='W2').mods;
+  return subs.map(sub=>{
+    const ids=[...W2SUB[sub.key]].filter(id=>w2mods.includes(id));
+    if(!ids.length) return '';
+    return `<div class="w2sg"><div class="w2sghead"><span class="w2sgbadge" style="background:${sub.bg};color:${sub.fg};border:0.5px solid ${sub.border}">${sub.label}</span><span class="w2sgline"></span></div><div class="chips">${ids.map(chip).join('')}</div></div>`;
+  }).join('');
 }
 function transferBox(){
   return `<div class="ml-note"><strong>W6-Hinweis:</strong> Integration und Transfer sind nicht nur eigene Module, sondern Ergänzung / Abschlussbausteine in vielen Einheiten. Die Bausteine werden niedrig dosiert eingesetzt und ersetzen keine weitere thematische Öffnung.<div class="tchips">${TB.map(x=>`<span class="tchip"><strong>${x.t}:</strong> ${x.d}</span>`).join('')}</div></div>`;
@@ -684,25 +723,26 @@ document.getElementById('mlb').innerHTML=D.map((dim,i)=>`
     <span class="wname">${dim.name}</span>
     <span class="wtrig">${dim.trig}</span>
   </div>
-  <div class="chips">${dim.mods.map(chip).join('')}</div>
-  ${dim.code==='W2'?w2Box():''}
+  ${dim.code==='W2'?w2SubChips():`<div class="chips">${dim.mods.map(chip).join('')}</div>`}
   ${dim.code==='W6'?transferBox():''}
 </div>${i<5?'<div class="wdiv"></div>':''}`).join('');
 
 /* ---------- Filter (aus v10.7, plus Sichtbarkeit für Suche) ---------- */
 const AF=new Set();
+const AM=new Set();
 function applyFilterAndSearch(){
   const keys=[...AF];
+  const methods=[...AM];
   const q=(document.getElementById('search').value||'').trim().toLowerCase();
   let hits=0;
   document.querySelectorAll('.chip').forEach(c=>{
     const s=c.dataset.s.split(',');
     const passFilter = keys.length===0 || keys.every(k=>s.includes(k));
+    const passMethod = methods.length===0 || methods.some(m=>s.includes(m));
     const passSearch = !q || c.dataset.search.includes(q);
-    c.classList.toggle('faded', passFilter && !passSearch ? false : (!passFilter));
-    // Suche blendet Nicht-Treffer komplett aus; Filter dimmt nur
+    c.classList.toggle('faded', passSearch && !(passFilter && passMethod));
     c.classList.toggle('hide', !passSearch);
-    if(passSearch && passFilter) hits++;
+    if(passSearch && passFilter && passMethod) hits++;
   });
   // Wirkdimensions-Zeilen ohne sichtbare Treffer bei aktiver Suche ausblenden
   document.querySelectorAll('.wrow').forEach(row=>{
@@ -721,6 +761,19 @@ function fs(k,btn){
     if(AF.has(k)){AF.delete(k);btn.classList.remove('on');}
     else{AF.add(k);btn.classList.add('on');}
     if(AF.size===0) document.querySelector('.fb[data-k="all"]').classList.add('on');
+  }
+  applyFilterAndSearch();
+}
+function fm(k,btn){
+  if(k==='all'){
+    AM.clear();
+    document.querySelectorAll('.fb-m').forEach(b=>b.classList.remove('on'));
+    document.querySelector('.fb-m[data-m="all"]').classList.add('on');
+  } else {
+    document.querySelector('.fb-m[data-m="all"]').classList.remove('on');
+    if(AM.has(k)){AM.delete(k);btn.classList.remove('on');}
+    else{AM.add(k);btn.classList.add('on');}
+    if(AM.size===0) document.querySelector('.fb-m[data-m="all"]').classList.add('on');
   }
   applyFilterAndSearch();
 }
