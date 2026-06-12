@@ -23,9 +23,11 @@ function plSessionPrintHtml(plan,s,idx){
   const orientRows=[];
   orientRows.push(['Einstiegslogik',modeLabel]);
   if(s.orientGreeting) orientRows.push([s.orientGreetingConfirmed?(plFrameModeEffective(s,plan.setting)==='geronto'?'Durchgeführter musikalischer Beginn / Ritual':'Durchgeführter Einstieg / Ankommen'):(plFrameModeEffective(s,plan.setting)==='geronto'?'Geplanter musikalischer Beginn / Ritual':'Geplanter Einstieg / Ankommen'),s.orientGreeting]);
-  if(s.orientThemes) orientRows.push(['Beobachtete Ausgangslage / tatsächlicher Verlauf',s.orientThemes]);
+  if(s.orientThemes) orientRows.push(['Beobachtete Ausgangslage',s.orientThemes]);
+  if(s.orientCourse) orientRows.push(['Tatsächlicher Verlauf',s.orientCourse]);
   if(s.orientDecision) orientRows.push(['Geplante therapeutische Ausrichtung',s.orientDecision]);
   if(s.orientDoc) orientRows.push(['Beobachtete Wirkung / Dokumentationskern',s.orientDoc]);
+  if(s.docClosing) orientRows.push(['Schlusssatz der Dokumentation',s.docClosing]);
   if(orientRows.length){
     h+='<table><tbody>'+orientRows.map(r=>`<tr><th>${plEsc(r[0])}</th><td>${plEsc(r[1])}</td></tr>`).join('')+'</tbody></table>';
   }

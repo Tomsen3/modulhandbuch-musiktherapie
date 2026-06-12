@@ -3,7 +3,7 @@
    Datenmodell (für Nachfolge dokumentiert):
    plState = { v:1, activePlanId, plans:[ Plan ] }
      Plan    = { id, name, kind:'plan'|'single', setting:'p'|'s'|'g'|'a', sessions:[ Session ] }
-     Session = { id, label, date, group, wirkdim, orientMode, orientGreeting, orientGreetingConfirmed, orientThemes, orientDecision, orientDoc, notes, blocks:[ Block ] }
+     Session = { id, label, date, group, wirkdim, orientMode, orientGreeting, orientGreetingConfirmed, orientThemes, orientCourse, orientDecision, orientDoc, docClosing, notes, blocks:[ Block ] }
      Block   = { id, moduleId, role, status:'planned'|'performed'|'adapted'|'omitted', duration:Zahl(Min.), phases:Text, note }
    Einzelstunden werden bewusst im selben Datenmodell gespeichert: kind='single' mit genau einer Session.
    Persistenz: localStorage-Schlüssel 'mhb_plaene_v1'.
@@ -91,8 +91,10 @@ function startCreatePreset(mode){
     orientGreeting:'',
     orientGreetingConfirmed:false,
     orientThemes:'',
+    orientCourse:'',
     orientDecision:'',
-    orientDoc:''
+    orientDoc:'',
+    docClosing:''
   });
   mods.forEach((id,i)=>session.blocks.push(startCreateBlock(id,i===0?'Einstieg':'Hauptteil')));
   const plan={id:plUid(),name:titleBase,kind:'single',setting,sessions:[session]};
@@ -110,8 +112,10 @@ function plEnsureSessionFrame(s){
   if(s.orientGreeting==null) s.orientGreeting='';
   if(s.orientGreetingConfirmed==null) s.orientGreetingConfirmed=false;
   if(s.orientThemes==null) s.orientThemes='';
+  if(s.orientCourse==null) s.orientCourse='';
   if(s.orientDecision==null) s.orientDecision='';
   if(s.orientDoc==null) s.orientDoc='';
+  if(s.docClosing==null) s.docClosing='';
   if(s.docStyle==null) s.docStyle='kurz';
   (s.blocks||[]).forEach(b=>{ if(b.status==null) b.status='planned'; });
   return s;
@@ -165,11 +169,8 @@ function plTextBlockSelect(sid,field){
 function plApplyTextBlock(sid,field,select){
   const s=plFindSession(sid); const value=select&&select.value;
   if(!s||!value) return;
-  if(s[field] && s[field]!==value && !confirm('Die vorhandene Eingabe wird durch den ausgewählten Textbaustein ersetzt. Fortfahren?')){
-    select.value='';
-    return;
-  }
-  s[field]=value;
+  const current=String(s[field]||'').trim();
+  s[field]=current&&current!==value ? `${current} ${value}` : value;
   if(field==='orientGreeting') s.orientGreetingConfirmed=false;
   select.value='';
   plSave(); plRenderMain();
@@ -252,8 +253,10 @@ function plRenderFrame(plan,s){
     </div>
     <div class="pl-frame-section after">Nach beziehungsweise während der Stunde tatsächlich eintragen</div>
     <div class="pl-frame-grid">
-      <div class="pl-field full"><label>Beobachtete Ausgangslage / tatsächlicher Verlauf</label>${plTextBlockSelect(s.id,'orientThemes')}<textarea class="pl-area" rows="2" placeholder="${geronto?'z. B. Wachheit, Blickkontakt, Unruhe, Mitgehen, Rückzug und Veränderungen im Verlauf':'z. B. tatsächliche Stimmung, Themenlage, Beteiligung und Veränderungen im Verlauf'}" onchange="plUpdateSession('${s.id}','orientThemes',this.value)">${plEsc(s.orientThemes)}</textarea></div>
+      <div class="pl-field full"><label>Beobachtete Ausgangslage</label>${plTextBlockSelect(s.id,'orientThemes')}<textarea class="pl-area" rows="2" placeholder="${geronto?'z. B. Wachheit, Blickkontakt, Unruhe oder Rückzug zu Beginn':'z. B. tatsächliche Stimmung, Themenlage und Beteiligung zu Beginn'}" onchange="plUpdateSession('${s.id}','orientThemes',this.value)">${plEsc(s.orientThemes)}</textarea></div>
+      <div class="pl-field full"><label>Tatsächlicher Verlauf</label>${plTextBlockSelect(s.id,'orientCourse')}<textarea class="pl-area" rows="2" placeholder="z. B. Veränderungen von Beteiligung, Kontakt, Belastbarkeit oder Regulation im Verlauf" onchange="plUpdateSession('${s.id}','orientCourse',this.value)">${plEsc(s.orientCourse)}</textarea></div>
       <div class="pl-field full"><label>Beobachtete Wirkung / Dokumentationskern nach der Stunde</label>${plTextBlockSelect(s.id,'orientDoc')}<textarea class="pl-area" rows="2" placeholder="Nur tatsächlich Beobachtetes eintragen: Wirkung, Anpassungen, Reaktionen und nächster Schritt" onchange="plUpdateSession('${s.id}','orientDoc',this.value)">${plEsc(s.orientDoc)}</textarea></div>
+      <div class="pl-field full"><label>Schlusssatz der Dokumentation</label>${plTextBlockSelect(s.id,'docClosing')}<textarea class="pl-area" rows="2" placeholder="z. B. weiterer therapeutischer Fokus oder Empfehlung für die nächste Einheit" onchange="plUpdateSession('${s.id}','docClosing',this.value)">${plEsc(s.docClosing)}</textarea></div>
     </div>
   </div>`;
 }

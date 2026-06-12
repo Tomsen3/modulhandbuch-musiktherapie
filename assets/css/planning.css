@@ -147,6 +147,24 @@
 .pl-pitem .pl-pitem-dots{display:flex;gap:3px;flex-shrink:0}
 
 @media(max-width:840px){
-  .pl-layout{flex-direction:column}
+  .pl-layout{flex-direction:column;align-items:stretch}
   .pl-side{position:static;flex:none;width:100%}
+  .pl-main{width:100%;max-width:100%}
+}
+@media(max-width:600px){
+  .pl-planhead input.pl-planname{min-width:0;width:100%;flex-basis:100%}
+  .pl-planhead>.pl-field{width:100%}
+  .pl-planhead>.pl-btn{flex:1 1 auto}
+  .pl-session-head .pl-input{min-width:0!important;width:100%;flex-basis:100%!important}
+  .pl-session-fields{display:grid;grid-template-columns:1fr}
+  .pl-session-fields .pl-field{min-width:0}
+  .pl-session-body{padding:0 10px 12px}
+  .pl-frame-top>.pl-field{min-width:0!important;width:100%}
+  .pl-frame-grid .pl-field{min-width:0}
+  .pl-frame .pl-input,.pl-frame .pl-select,.pl-frame .pl-area{width:100%;max-width:100%}
+  .pl-suggestion{min-width:0;flex-wrap:wrap}
+  .pl-suggestion span{min-width:0;overflow-wrap:anywhere}
+  .pl-block-body .pl-field.grow{min-width:0;width:100%}
+  .pl-role,.pl-status{width:100%;flex-basis:100%}
+  .pl-docstyle .pl-field{min-width:0;width:100%}
 }

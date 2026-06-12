@@ -42,8 +42,14 @@
 
   .app-header{ padding:20px 14px 0; }
   .app-title{ font-size:23px; }
-  .tabs{ padding:0 14px; gap:0; }
-  .tab{ padding:11px 9px 13px; font-size:13px; }
+  .tabs{
+    padding:0 14px;
+    gap:0;
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+    scrollbar-width:thin;
+  }
+  .tab{ padding:11px 9px 13px; font-size:13px; flex:0 0 auto; }
   .view{ padding:14px 14px 60px; }
 
   .panel{ width:100vw; }

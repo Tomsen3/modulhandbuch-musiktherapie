@@ -106,33 +106,36 @@ function plDocMethodsSentence(methods,titles){
 function plDocConfirmedGreeting(s){ return s.orientGreetingConfirmed ? plDocReadableText(s.orientGreeting) : ''; }
 function plDocPick(arr,seed){ return arr[Math.abs(Number(seed)||0)%arr.length]; }
 function plDocSentenceEnd(t){ t=plDocReadableText(t); if(!t) return ''; return /[.!?]$/.test(t)?t:t+'.'; }
+function plDocLowerFirst(t){ t=plDocReadableText(t); return t?t.charAt(0).toLowerCase()+t.slice(1):''; }
 function plSessionDocTextDetailed(plan,s,idx){
   plEnsureSessionFrame(s);
   const lines=[];
 
   const greeting=plDocConfirmedGreeting(s);
-  if(greeting) lines.push(`Einstieg – ${plDocSentenceEnd(greeting)}`);
-  if(s.orientThemes) lines.push(`Ausgangslage und Verlauf – ${plDocSentenceEnd(s.orientThemes)}`);
+  if(greeting) lines.push(plDocSentenceEnd(greeting));
+  if(s.orientThemes) lines.push(plDocSentenceEnd(s.orientThemes));
+  if(s.orientCourse) lines.push(plDocSentenceEnd(s.orientCourse));
 
   const actualBlocks=plDocActualBlocks(s);
   const omittedBlocks=plDocOmittedBlocks(s);
   if(actualBlocks.length){
     actualBlocks.forEach(b=>{
       const summary=plDocOfferSummary(b);
-      const adapted=b.status==='adapted'?' (angepasst durchgeführt)':'';
-      if(summary) lines.push(`Angebot „${plDocModuleTitle(b.moduleId)}“${adapted} – ${plDocSentenceEnd(summary)}`);
+      const action=b.status==='adapted'?'wurde angepasst durchgeführt und umfasste':'umfasste';
+      if(summary) lines.push(`Das musiktherapeutische Angebot „${plDocModuleTitle(b.moduleId)}“ ${action} ${plDocSentenceEnd(plDocLowerFirst(summary))}`);
     });
     const notes=actualBlocks.filter(b=>plCleanLine(b.note)).map(b=>plDocSentenceEnd(b.note));
-    if(notes.length) lines.push(`Beobachtungen und Anpassungen – ${notes.join(' ')}`);
+    if(notes.length) lines.push(notes.join(' '));
   }
   if(omittedBlocks.length){
     omittedBlocks.forEach(b=>{
       lines.push(`Nicht durchgeführt wurde „${plDocModuleTitle(b.moduleId)}“.`);
-      if(plCleanLine(b.note)) lines.push(`Begründung – ${plDocSentenceEnd(b.note)}`);
+      if(plCleanLine(b.note)) lines.push(plDocSentenceEnd(b.note));
     });
   }
-  if(s.notes) lines.push(`Weitere Hinweise – ${plDocSentenceEnd(s.notes)}`);
-  if(s.orientDoc) lines.push(`Beobachtete Wirkung – ${plDocSentenceEnd(s.orientDoc)}`);
+  if(s.notes) lines.push(plDocSentenceEnd(s.notes));
+  if(s.orientDoc) lines.push(plDocSentenceEnd(s.orientDoc));
+  if(s.docClosing) lines.push(plDocSentenceEnd(s.docClosing));
   return lines.join('\n');
 }
 function plSessionDocTextShort(plan,s,idx){
@@ -143,10 +146,12 @@ function plSessionDocTextShort(plan,s,idx){
   const methods=plDocBlockMethods(s);
   const titles=plDocBlockTitles(s);
   const lines=[];
-  if(greeting) lines.push(`Einstieg – ${plDocSentenceEnd(greeting)}`);
-  if(start) lines.push(`Ausgangslage und Verlauf – ${plDocSentenceEnd(start)}`);
+  if(greeting) lines.push(plDocSentenceEnd(greeting));
+  if(start) lines.push(plDocSentenceEnd(start));
+  if(s.orientCourse) lines.push(plDocSentenceEnd(s.orientCourse));
   if(methods.length) lines.push(plDocMethodsSentence(methods,titles));
-  if(doc) lines.push(`Beobachtete Wirkung – ${plDocSentenceEnd(doc)}`);
+  if(doc) lines.push(plDocSentenceEnd(doc));
+  if(s.docClosing) lines.push(plDocSentenceEnd(s.docClosing));
   return lines.join('\n');
 }
 function plSessionDocTextTeam(plan,s,idx){
@@ -156,10 +161,12 @@ function plSessionDocTextTeam(plan,s,idx){
   const greeting=plDocConfirmedGreeting(s);
   const methodList=plDocBlockMethods(s);
   const lines=[];
-  if(greeting) lines.push(`Einstieg – ${plDocSentenceEnd(greeting)}`);
-  if(start) lines.push(`Ausgangslage und Verlauf – ${plDocSentenceEnd(start)}`);
+  if(greeting) lines.push(plDocSentenceEnd(greeting));
+  if(start) lines.push(plDocSentenceEnd(start));
+  if(s.orientCourse) lines.push(plDocSentenceEnd(s.orientCourse));
   if(methodList.length) lines.push(plDocMethodsSentence(methodList));
-  if(doc) lines.push(`Beobachtete Wirkung – ${plDocSentenceEnd(doc)}`);
+  if(doc) lines.push(plDocSentenceEnd(doc));
+  if(s.docClosing) lines.push(plDocSentenceEnd(s.docClosing));
   return lines.join('\n');
 }
 function plSessionDocText(plan,s,idx,style){
@@ -175,7 +182,7 @@ function plDocStyleOptions(current){
   return opts.map(o=>`<option value="${o[0]}" ${current===o[0]?'selected':''}>${plEsc(o[1])}</option>`).join('');
 }
 function plHasObservedDocumentation(s){
-  return !!(plCleanLine(s.orientThemes)||plCleanLine(s.orientDoc)||plDocActualBlocks(s).some(b=>plCleanLine(b.note))||plDocOmittedBlocks(s).some(b=>plCleanLine(b.note)));
+  return !!(plCleanLine(s.orientThemes)||plCleanLine(s.orientCourse)||plCleanLine(s.orientDoc)||plCleanLine(s.docClosing)||plDocActualBlocks(s).some(b=>plCleanLine(b.note))||plDocOmittedBlocks(s).some(b=>plCleanLine(b.note)));
 }
 function plRenderSessionDoc(plan,s,idx){
   plEnsureSessionFrame(s);
