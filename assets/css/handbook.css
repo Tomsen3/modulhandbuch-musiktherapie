@@ -22,9 +22,9 @@
 
 
 
-/* ===== v4.10: Handbuch-Navigation mit stabiler Ankersteuerung ===== */
-/* ===== v4.2: Benutzerführung, Empfehlungen, Favoriten und Dokumentationsstile ===== */
-/* ===== v4.2 Feinschliff: Geronto-/Akutmodus, Handbuch-Lesemodus, Druckziele, sprachliche Variation ===== */
+/* ===== v4.3: Handbuch-Navigation mit stabiler Ankersteuerung ===== */
+/* ===== v4.3: Benutzerführung, Empfehlungen, Favoriten und Dokumentationsstile ===== */
+/* ===== v4.3 Feinschliff: Geronto-/Akutmodus, Handbuch-Lesemodus, Druckziele, sprachliche Variation ===== */
 .ml-modebox{display:none;border:0.5px solid var(--color-border-secondary);border-radius:12px;background:var(--color-surface);padding:12px 14px;margin:8px 0 12px;box-shadow:0 4px 14px rgba(60,50,30,.05)}
 .ml-modebox.on{display:block}
 .ml-modebox h3{font-family:var(--font-serif);font-size:18px;line-height:1.2;margin:0 0 4px;color:var(--color-text-primary)}

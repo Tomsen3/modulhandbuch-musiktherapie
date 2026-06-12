@@ -20,7 +20,8 @@ Refactoring darf die bestehende Funktionalität nicht verändern.
 - In der automatischen Kurzdokumentation dürfen keine internen Kürzel und keine Abschnittsdauern erscheinen.
 - Die Planung darf Dauerangaben enthalten.
 - Die automatische Dokumentation soll klinisch lesbar sein und ohne technische Planungslogik funktionieren.
-- Versionierung bleibt sichtbar bei 4.2, bis sie ausdrücklich geändert wird.
+- Versionierung bleibt sichtbar bei 4.3, bis sie ausdrücklich geändert wird.
+- Künftige Versionsnummern verwenden genau eine Nachkommastelle.
 - Geronto-Modus und Akut-Modus dürfen fachlich nicht aufgeweicht werden.
 - Akut-Modus muss eng und sicher führen.
 

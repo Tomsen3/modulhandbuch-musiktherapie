@@ -45,4 +45,6 @@ Keine Patientendaten oder echten Dokumentationen ins Repository einfügen. JSON-
 
 ## Version
 
-Sichtbare Version: 4.2
+Sichtbare Version: 4.3
+
+Künftige Versionsnummern verwenden genau eine Nachkommastelle.

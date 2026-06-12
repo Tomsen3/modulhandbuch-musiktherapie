@@ -1,4 +1,4 @@
-/* ---------- v4.10: Handbuch-Navigation mit stabiler Ankersteuerung ---------- */
+/* ---------- v4.3: Handbuch-Navigation mit stabiler Ankersteuerung ---------- */
 const HB_HISTORY=[];
 let HB_SEARCH_QUERY='';
 let HB_SEARCH_INDEX=-1;

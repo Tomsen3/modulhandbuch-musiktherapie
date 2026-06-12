@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 4.3
+
+- Planungslogik und automatische Dokumentation fachlich getrennt
+- bestätigte Durchführung für Einstieg und Module
+- feste konsolidierte Dokumentationsbeschreibung für alle 59 Module
+- editierbare Textbausteine für Einstieg, Ausgangslage, Wirkung und weitere Notizen
+- sprachlich überarbeitete Dokumentationsvarianten Kurz, Ausführlich und Team / Übergabe
+- einheitliche sichtbare Versionierung 4.3 mit genau einer Nachkommastelle
+
 ## Version 4.2
 
 - Startseite mit klarer Nutzerführung

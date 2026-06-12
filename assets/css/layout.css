@@ -68,7 +68,7 @@
 @media(max-width:600px){.start-hero{padding:20px 16px}.start-hero h1{font-size:24px}.start-grid{grid-template-columns:1fr}.start-fields{grid-template-columns:1fr}.start-field.full{grid-column:auto}}
 
 
-/* ===== Überarbeitung v4.10: klare Arbeitswege, Listenansicht, Handbuch-Navigation ===== */
+/* ===== Überarbeitung v4.3: klare Arbeitswege, Listenansicht, Handbuch-Navigation ===== */
 .start-primary{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:16px 0}
 .start-primary-card{appearance:none;text-align:left;background:var(--color-surface);border:1px solid var(--color-border-secondary);border-radius:16px;padding:19px 18px;cursor:pointer;min-height:148px;font-family:var(--font-sans);color:var(--color-text-primary);box-shadow:0 8px 22px rgba(60,50,30,.07)}
 .start-primary-card:hover{background:var(--color-background-secondary);transform:translateY(-1px)}
@@ -117,4 +117,3 @@
 .search-wrap input:focus{outline:2px solid #b9c9dd; outline-offset:0}
 .search-ico{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--color-text-secondary);font-size:14px;pointer-events:none}
 .search-clear{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;cursor:pointer;color:var(--color-text-secondary);font-size:16px;padding:4px 8px;display:none}
-

@@ -4,7 +4,7 @@
 
 - App öffnen
 - Hauptwege und Schnellzugriffe sichtbar
-- Version 4.2 sichtbar
+- Version 4.3 sichtbar
 
 ## 2. Module finden
 
